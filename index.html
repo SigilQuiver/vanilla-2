@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>vanilla 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.svg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/tags.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/query.js"></script>
+</head>
+
+<body>
+
+
+<h1>Vanilla 2 <i class="fas fa-ice-cream"></i></h1>
+
+<div><i class="fas fa-search search-icon"></i><input id="search-bar" autocomplete="off" class="search border" type="text"></input>
+    <ul id ="search-result" class="border results no-overflow minimize" style="border-radius: 0 0 1em 1em;">
+    </ul>
+</div>
+
+<div id="group-expand">
+    <div class="filled no-overflow tag-container top-label minimize">
+        <span>group</span>
+
+        <button class="line-left tag-button"><i class="fas fa-compress"></i></button>
+    </div>
+    <div id="group-tags-container" class="border tags-container minimize no-overflow" style="border-top-left-radius: 0;"></div>
+</div>
+
+<div id="tags-container" class="border tags-container"></div>
+
+<ul class="post-info">
+    <li class="filled no-overflow tag-container">
+        <div class="border"><i class="fas fa-heart "></i> <i class="fas fa-greater-than-equal"></i></div>
+        <input id="min-score" class="border" type="number" value=50></input>
+    </li>
+    <li><button id="rating" class="button-padding tag-button filled"><i class="fas fa-filter"></i> <span> all</span></button></li>
+    <li><button id="sort" class="button-padding tag-button filled"><i class="fas fa-sort-amount-down"></i> <span> default</span></button></li>
+</ul>
+
+<button id="search-button" class="rounded-only search-button">search</button>
+
+<h2 id="post-results"></h2>
+
+<div id="posts-container" class="middle"></div>
+</body>
+
+</html>
