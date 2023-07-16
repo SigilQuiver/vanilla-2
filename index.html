@@ -1,53 +1,1111 @@
-<html>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+
 
 <head>
-    <title>vanilla 2</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.svg">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/js/all.min.js" integrity="sha512-2bMhOkE/ACz21dJT8zBOMgMecNxx0d37NND803ExktKiKdSzdwn+L7i9fdccw/3V06gM/DBWKbYmQvKMdAA9Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="js/tags.js"></script>
-    <script src="js/posts.js"></script>
-    <script src="js/query.js"></script>
+
+
+    <title>vanilla</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.8">
+	<meta name="referrer" content="no-referrer">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+	<link rel="icon" href="favicon.svg">
+	<style>
+		
+		*{transition: all 0.5s ease-in-out;box-sizing:border-box;font-smooth: auto;}
+		
+        body{
+			font-family:'Nunito', sans-serif;
+            background-color:#171740;
+			color:cyan;	
+        }
+		
+		::-webkit-scrollbar{
+			width:0.3em;
+			height:0.3em;
+		}
+		
+		::-webkit-scrollbar-track {
+			background-color:rgba(0,255,255,0.2);
+			//border-radius:2.5px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color:cyan;
+			border-radius:2em;
+		}
+		
+		
+		
+		.container-vertical-center {
+			display: flex;
+			justify-content: center;
+			flex-direction:column;
+			align-items: center;
+			align-text: center;
+			
+		}
+		
+		.container-vertical-left{
+			display:flex;
+			flex-direction: column;
+			float:left;
+			align-items:flex-start;
+		}
+		
+		.container-horizontal{
+			display:flex;
+			flex-direction:row;
+			align-items:center;
+			width:auto;
+			flex-grow:0;
+			flex-wrap:wrap;
+		}
+		
+		.border{
+			border: 0.15em solid cyan;
+			border-radius:0.3em;
+		}
+		
+		.outline{
+			outline: 1em solid cyan;
+			border-radius:0.3em;
+		}
+		
+		.empty{
+			font-family:'Nunito', sans-serif;
+			background-color:transparent;
+			color:cyan;	
+			font-size: 100%;
+			border:none;
+			outline:none;
+			margin:none;
+			padding:none;
+			appearance:none;
+			-webkit-appearance: none;
+		}
+		
+		.child-margins > *{
+			margin:0.3em;
+		}
+		
+		.middle-container{
+			height:auto;
+			transition: height 0.5s ease-in-out;
+			width: 90%;
+			max-width:50em;
+		}
+		
+		.search-bar-container .container-horizontal{background-color:transparent;transition: all 0.5s ease-in-out;padding:0.3em;}
+		.search-bar-container .container-horizontal:focus-within{background-color:rgba(0,255,255,0.1);}
+		.search-bar-container .container-vertical-left{width:100%;}
+		.search-bar-container button{width:100%;text-align:left;}
+		
+		.search-bar-input{
+			position:relative;
+			border-radius:0.3em;
+			
+			width:auto;
+			max-width:none;
+			flex-grow:1;
+			transition: all 0.5s ease-in-out;
+		}
+		
+		::placeholder{
+			color:rgba(0,255,255,0.3);
+		}
+		
+		.button-style{
+			background-color:transparent;
+			transition: all 0.5s ease-in-out;
+			padding:0.3em;
+		}
+		.button-style:hover{
+			background-color:rgba(0,255,255,0.1);
+		}
+		
+		.loader{
+			padding:0.6em;
+			font-size:250%;
+			margin:auto;
+		}
+		
+		.no-wrap{
+			white-space:nowrap;
+		}
+		
+		.reverse-color{
+			background-color:cyan;
+			color:#171740;
+			border-radius:0.3em;
+		}
+		.reverse-color > *{
+			color:#171740;
+		}
+		
+		.vertical-line {
+			border-left:0.15em solid rgba(0,255,255,0.2);
+		}
+		
+		.horizontal-line{
+			border-top:0.15em solid rgba(0,255,255,0.2);
+			width:100%;
+			margin-top:0;
+		}
+		
+		.break {
+			flex-basis: 100%;
+			height: 0;
+			margin:0;
+		}
+		
+		
+		
+		.select{
+			position:relative;
+			transition: all 0.5s ease-in-out;
+		}
+		.select:hover{
+			background-color:rgba(0,255,255,0.1);
+		}
+		
+		select{
+			width:5em;
+		}
+		option{
+			background:#171740;
+			padding:0.3em;
+			border-radius:0.3em;
+		}
+		
+		img,video{
+			display:block;
+			width:100%;
+			height:auto;
+		}
+		
+		.img-wrap{
+			display:block;
+			max-height:90vh;
+			overflow-y:auto;
+			vertical-align:bottom;
+		}
+		
+		.post-footer{
+			display:block;
+			width:100%;
+			padding:0.3em;
+		}
+		
+		.post-expand{
+			position:absolute;
+			width:30%;
+			margin:auto;
+			top:100%;
+			left:35%;
+			border-radius: 0 0 0.3em 0.3em;
+		}
+		
+		.post-expand button{width:100%;}
+		
+    </style>
+	
 </head>
-
 <body>
+	<div class="container-vertical-center child-margins">
+		
+		<!--search bar-->
+		
+		<div class="border middle-container search-bar-container" id="search-bar-container" style="position:relative;">
+			<div class="container-horizontal child-margins">
+				<i class="fa fa-search"></i>
+				<input class="empty search-bar-input" id="search-bar-input" type="text" placeholder="search tags">
+			</div>
+			<div class="container-vertical-left" id="suggestion-container"></div>
+		</div>
+		
+		<!--selectors-->
+		
+		<div id="selectors" class="child-margins middle-container" style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+			<span>
+			group insert:
+			<span class="border select child-margins">
+			<select class="empty" id="group-selector" >
+				<option>no group</option>
+			</select>
+			<i class="fa fa-arrows-v" style="position: absolute; right: 0; top: 0;"></i>
+			</span>
+			</span>
+			
+			<span>
+			rating:
+			<span class="border select child-margins">
+			<select class="empty" id="rating">
+				<option>none</option>
+				<option>explicit</option>
+				<option>questionable</option>
+				<option>safe</option>
+				
+			</select>
+			<i class="fa fa-arrows-v" style="position: absolute; right: 0; top: 0;"></i>
+			</span>
+			</span>
+			
+			<span>
+			min score:
+			<span class="border">
+			<input type="number" class="empty search-bar-input" placeholder="0" style="width:5em;" id="min-score" value="50">
+			</span>
+			</span>
+			
+			<span>
+			sort by:
+			<span class="border select child-margins" >
+			<select class="empty" id="score-sort">
+				<option>none</option>
+				<option>date</option>
+				<option>updated</option>
+				<option>score</option>
+			</select>
+			<i class="fa fa-arrows-v" style="position: absolute; right: 0; top: 0;"></i>
+			</span>
+			</span>
+			
+			<span>
+			tag types:
+			<span class="border select child-margins" >
+			<select class="empty" id="type">
+				<option>true</option>
+				<option>false</option>
+			</select>
+			<i class="fa fa-arrows-v" style="position: absolute; right: 0; top: 0;"></i>
+			</span>
+			</span>
+		
+		
+		</div class="selectors">
+		
+		<div class="middle-container container-horizontal" style="margin:0;">
+		<div id="new-group-button" class="border" style="border-radius:0.3em 0.3em 0 0;align-self:flex-start;margin-bottom:0;border-bottom:0;"><button class="empty button-style">new group</button></div>
+		</div>
+		<!--tag+group container-->
+		
+		<div class="border middle-container container-horizontal child-margins" id="tag-button-container" style="min-height:1em;max-height:15em;overflow-x:auto;margin-top:0px;margin-bottom:0px;border-radius:0px 0.3em 0.3em 0.3em ;">
+			<div class="break" style="height:0;"></div>
+		</div>
+		
+		<!--group+search buttons-->
+		<div class="middle-container container-horizontal" style="margin:0;">
+		<div class="border" style="display:block;margin-top:0;margin-left:auto;margin-right:auto;width:10em;border-top:0;border-radius:0 0 0.3em 0.3em;"><button id="tag-search-button" class="empty button-style">search with these tags</button></div>
+		</div>
+		<br>
+		<h2 id="results"></h2>
+		<br>
+		
+		<!--page navigation (top)-->
+		<div class="page-container middle-container container-horizontal" style="display:none;justify-content:space-between;align-items:stretch">
+			<span class="border page-last" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-double-left" style="pointer-events:none;"></i></button></span>
+			<span class="border page-previous" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-left" style="pointer-events:none;"></i></button></span>
+			<span class="border page-input" style="width:15%">
+			<input type="number" class="empty search-bar-input" placeholder="0" style="width:100%;text-align:center">
+			</span>
+			<span class="border page-next" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-right" style="pointer-events:none;"></i></button></span>
+			<span class="border page-first" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-double-right" style="pointer-events:none;"></i></button></span>
+		</div>
+		<br>
+		
+		<!--posts-->
+		<div id="post-container" class="middle-container">
+		</div>
+		<!--page navigation (bot)-->
+		<br>
+		<div class="page-container middle-container container-horizontal" style="display:none;justify-content:space-between;align-items:stretch">
+			<span class="border page-last" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-double-left" style="pointer-events:none;"></i></button></span>
+			<span class="border page-previous" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-left" style="pointer-events:none;"></i></button></span>
+			<span class="border page-input" style="width:15%">
+			<input type="number" class="empty search-bar-input" placeholder="0" style="width:100%;text-align:center">
+			</span>
+			<span class="border page-next" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-right" style="pointer-events:none;"></i></button></span>
+			<span class="border page-first" style="width:15%;display:inline-block;"><button class="empty button-style" style="width:100%;text-align:center;"><i class="fa fa-angle-double-right" style="pointer-events:none;"></i></button></span>
+		</div>
+		
+	</div>
+	
+	<script src="xml2json.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch-jsonp/1.0.6/fetch-jsonp.min.js"></script>
+	
+	<script>
+		
+	
+		function createLoader(){
+			var loader = document.createElement("i");
+			loader.classList.add("fa","fa-cog","fa-spin","loader");
+			return loader;
+		}
+		
+		function createBreak(){
+			var breakE = document.createElement("div");
+			breakE.classList.add("break");
+			return breakE;
+		}
+		
+		function createOption(name){
+			var option = document.createElement("option");
+			option.innerHTML = name;
+			return option;
+		}
+		
+		function tagDelete(event){
+			parent = event.target.parentNode;
+			event.target.parentNode.remove();
+		}
+		
+		function tagToggle(event){
+			if (event.target.innerHTML === "+"){
+				event.target.innerHTML = "-";
+			}
+			else if (event.target.innerHTML === "-"){
+				event.target.innerHTML = "+";
+			}
+		}
+		
+		function createTag(label,inGroup){
+			if (inGroup === undefined){
+				inGroup = false;
+			}
+		
+			var tag = document.createElement("span");
+			tag.classList.add("border","no-wrap");
+			
+			var b1 = document.createElement("button");
+			b1.classList.add("empty","button-style");
+			b1.innerHTML = label;
+			b1.addEventListener("click",tagDelete);
+			tag.appendChild(b1);
+			
+			if(!inGroup){
+				var b2 = document.createElement("button");
+				b2.classList.add("empty","button-style","vertical-line");
+				b2.innerHTML = "+";
+				b2.addEventListener("click",tagToggle);
+				tag.appendChild(b2);
+			}
+			
+			tag.id = label;
+			
+			return tag;
+		}
+		
+		var breakList = [];
+		
+		function groupDelete(event){
+			parent = event.target.parentNode;
+			parent.remove();
+		}
+		
+		function groupToggle(event){
+			var symbolList=["+","~","-"];
+			
+			event.target.innerHTML = symbolList[(symbolList.indexOf(event.target.innerHTML)+1)%3];
+		}
+		
+		function groupExpand(event){
+			arrow = event.target.childNodes[0];
+			if (arrow.classList.contains("fa-angle-down")){//expand
+				arrow.classList.remove("fa-angle-down");
+				arrow.classList.add("fa-angle-up");
+				
+				event.target.parentNode.parentNode.insertBefore(createBreak(),event.target.parentNode);
+				event.target.parentNode.parentNode.insertBefore(createBreak(),event.target.parentNode.nextSibling);
+				event.target.parentNode.style.flexGrow="1";
+				
+				event.target.parentNode.childNodes[5].style.display="flex";
+				
+			}else{//minimise
+				arrow.classList.remove("fa-angle-up");
+				arrow.classList.add("fa-angle-down");
+				
+				event.target.parentNode.nextSibling.remove();
+				event.target.parentNode.previousSibling.remove();
+				event.target.parentNode.style.flexGrow="0";
+				
+				event.target.parentNode.childNodes[5].style.display="none";
+			}
+		}
+		
+		function updateGroupSelector(){
+			groupSelector.innerHTML = "";
+			groupSelector.appendChild(createOption("no group"));
+			for(group of document.getElementsByClassName("group")){
+				groupSelector.appendChild(createOption(group.childNodes[0].value));
+			}
+		}
+		
+		function newName(){
+			var i= 1;
+			var finished = false;
+			var potentialName = "";
+			while (!finished){
+				potentialName = "group"+i.toString();
+				finished = true;
+				for (group of document.getElementsByClassName("group")){
+					if (group.childNodes[0].value == potentialName){
+						finished = false;
+					}
+				}
+				i+=1;
+			}
+			return potentialName;
+			
+		}
+		
+		function createGroup(name){
+			name = name || newName();
+		
+			var group = document.createElement("span");
+			group.classList.add("group","border","no-wrap");
+			group.style.display="block-inline";
+			
+			var input = document.createElement("input");
+			input.classList.add("empty","search-bar-input")
+			input.type = "text";
+			input.value = name;
+			input.style.flexGrow="1";
+			input.style.width="70%";
+			input.addEventListener("input",updateGroupSelector);
+			
+			var b1 = document.createElement("button");
+			b1.classList.add("empty","button-style","vertical-line");
+			b1.innerHTML = "+";
+			b1.style.width="10%";
+			
+			var b2 = document.createElement("button");
+			b2.classList.add("empty","button-style","vertical-line");
+			var arrow = document.createElement("i");
+			arrow.classList.add("fa","fa-angle-down");
+			arrow.style.pointerEvents ="none";
+			b2.appendChild(arrow);
+			b2.style.width="10%";
+			
+			var b3 = document.createElement("button");
+			b3.classList.add("empty","button-style","vertical-line");
+			var trash = document.createElement("i");
+			trash.classList.add("fa","fa-trash-o");
+			trash.style.pointerEvents ="none";
+			b3.appendChild(trash);
+			b3.style.width="10%";
+			
+			b1.addEventListener("click",groupToggle);
+			b2.addEventListener("click",groupExpand);
+			b3.addEventListener("click",groupDelete);
+			
+			var tagContainer = document.createElement("div");
+			tagContainer.classList.add("container-horizontal","horizontal-line","child-margins");
+			tagContainer.style.display="none";
+			tagContainer.style.padding="0.3em";
+			tagContainer.innerHTML="tags go in here when this group is selected by group insertion";
+			
+			group.appendChild(input);
+			group.appendChild(b1);
+			group.appendChild(b2);
+			group.appendChild(b3);
+			group.appendChild(createBreak());
+			group.appendChild(tagContainer)
+			
+			return group;
+		}
+		
+		const groupSelector = document.getElementById("group-selector");
+		const searchBarInput = document.getElementById("search-bar-input");
+		const suggestionContainer = document.getElementById("suggestion-container");
+		const tagButtonContainer = document.getElementById("tag-button-container");
+		const postContainer = document.getElementById("post-container");
+		
+		const proxy_url = "";
+		const auto_url = "https://api.rule34.xxx/autocomplete.php?q=";
+		const query_url = "https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&"
+		
+		var page = 0;
+		var results = 100;
+		
+		searchBarInput.addEventListener('input',updateSearchbar);
+		
+		var post_tags = {};
+		var autocomplete_controller = null;//new AbortController();
+		var posts_controller = null;// new AbortController();
+		
+		function updateSearchbar(){
+		
+			if (searchBarInput.value === ""){
+				suggestionContainer.innerHTML = "";
+			}
+			else{
+			
+				suggestionContainer.innerHTML = "";
+				suggestionContainer.appendChild(createLoader());
+				
+				var input_val = searchBarInput.value.replace(new RegExp(' ', 'g'),"_");
+				if (autocomplete_controller){
+					autocomplete_controller.abort();
+				}
+				autocomplete_controller = new AbortController();
+				signal = autocomplete_controller.signal;
+				fetch(proxy_url+auto_url+input_val,{signal})
+				.then((response) => response.json())
+				.then((data) => {
+					suggestionContainer.innerHTML = "";
+					if (searchBarInput.value !== ""){
+						for(entry of data){
+							var button = document.createElement("button");
+							button.classList.add("empty","button-style");
+							button.innerHTML = entry["label"];
+							
+							button.addEventListener("click",addTag);
+							suggestionContainer.appendChild(button);
+						}
+					}
+				});
+			}
+		}
+		
+		
+		
+		function addTag(event){
+			if (!getTags(true).includes(event.target.innerHTML)){
+				const selected = groupSelector.options[groupSelector.selectedIndex].text;
+				if (selected === "no group"){
+					tagButtonContainer.appendChild(createTag(event.target.innerHTML));
+				}
+				else{
+					for (group of document.getElementsByClassName("group")){
+						if (group.childNodes[0].value === selected){
+							if (group.childNodes[5].innerHTML == "tags go in here when this group is selected by group insertion"){
+								group.childNodes[5].innerHTML = "";
+							}
+							group.childNodes[5].appendChild(createTag(event.target.innerHTML,true));
+						}
+					}
+				}
+				searchBarInput.value = "";
+				updateSearchbar();
+			}
+		}
+		
+		function createGroupManual(name,tagList,blacklist){
+			var group = createGroup(name)
+			group.childNodes[1].innerHTML = blacklist;
+			group.childNodes[5].innerHTML = "";
+			for (tag of tagList){
+				group.childNodes[5].appendChild(createTag(tag,true));
+			}
+			tagButtonContainer.appendChild(group);
+		}
+		
+		function getTags(flat){
+			var toReturn = [];
+			
+			for (group of document.getElementsByClassName("group")){
+					const groupName = group.childNodes[0].value;
+					var groupList = [];
+					for (tagElement of group.childNodes[5].childNodes){
+						if (tagElement.classList){
+							if (flat == true){
+								toReturn.push(tagElement.childNodes[0].innerHTML);
+							}
+							else{
+								groupList.push(tagElement.childNodes[0].innerHTML);
+							}
+						}
+					}
+					
+					if (flat == false){
+						toReturn.push({"type":"group","value":groupList,"blacklist":group.childNodes[1].innerHTML});
+					}
+				}
+				
+			for (tagElement of tagButtonContainer.childNodes){
+				if (tagElement.classList){
+					if (!(tagElement.classList.contains("break")||tagElement.classList.contains("group"))){
+						
+						if (flat == true){
+							toReturn.push(tagElement.childNodes[0].innerHTML);
+						}
+						else{
+							toReturn.push({"type":"single","value":tagElement.childNodes[0].innerHTML,"blacklist":tagElement.childNodes[1].innerHTML});
+						}
+					}
+				}
+			}
+			return toReturn;
+		}
+		
+		function createFontAwesome(name){
+			var i = document.createElement("i");
+			i.classList.add("fa",name);
+			return i;
+		}
+		
+		function createPost(imageLink,tagList,likes,source,id){
+			//tagList=["big_penis (5)","big boobs (5)"];
+			//likes = likes || 0;
+			
+			/*
+			<div class="border" style="position:relative">
+			<div class="img-wrap">
+				<img src="https://wimg.rule34.xxx//images/5918/57565d24b5b41721cdd089a47c0e970c.png?6723939">
+			</div>
+			<div class="post-footer container-horizontal horizontal-line" style="justify-content:space-between;display:flex;">
+				<span><i class="fa fa-heart" ></i> 500 </span>
+				<a href="https://www.w3schools.com/"target="_blank" rel="noopener noreferrer" class="empty"><i class="fa fa-external-link"></i></a>
+			</div>
+			
+			<div class="container-horizontal child-margins horizontal-line"></div>
+			
+			<div class="border post-expand" ><button class="empty button-style" >expand post</button></div>
+			</div>
+			*/
+			
+			var post = document.createElement("div");
+			post.classList.add("border");
+			post.style.position = "relative";
+			
+			var imgWrap = document.createElement("div");
+			imgWrap.classList.add("img-wrap");
+			var img;
+			if (imageLink.substring(imageLink.length-4,imageLink.length)==".mp4"){
+				img = document.createElement("video");
+				img.src = imageLink;
+				img.autoplay = false;
+				img.muted = false;
+				img.controls = true;
+				img.loop = true;
+				img.playsinline = true;
+				img.loading = "lazy";
+				img.referrerPolicy = "no-referrer";
+			}
+			else{
+				img = document.createElement("img");
+				img.src = imageLink;
+				img.loading = "lazy";
+				img.referrerPolicy = "no-referrer";
+			}
+			
+			imgWrap.appendChild(img);
+			post.appendChild(imgWrap);
+			
+			var footer = document.createElement("div");
+			footer.classList.add("post-footer","container-horizontal","horizontal-line");
+			footer.style.justifyContent="space-between";
+			footer.style.display="flex";
+			post.appendChild(footer);
+			
+			var score = document.createElement("span");
+			score.appendChild(createFontAwesome("fa-heart"));
+			score.appendChild(document.createTextNode(" "+likes.toString()));
+			footer.appendChild(score);
+			
+			if (source){
+				var sourceLink = document.createElement("a");
+				sourceLink.classList.add("empty");
+				sourceLink.href = source;
+				sourceLink.rel = "noopender noreferrer";
+				sourceLink.target="_blank"
+				sourceLink.innerHTML = "source";
+				footer.appendChild(sourceLink);
+			}
+			
+			var link = document.createElement("a");
+			link.classList.add("empty");
+			link.rel = "noopender noreferrer";
+			link.target="_blank"
+			link.href = imageLink;
+			link.appendChild(createFontAwesome("fa-external-link"));
+			footer.appendChild(link);
+			
+			var	expandTagContainer = document.createElement("div");
+			//expandTagContainer.classList.add("middle-container");//"container-horizontal","horizontal-line","child-margins");
+			expandTagContainer.style.display = "none";
+			expandTagContainer.style.overflowY ="auto";
+			expandTagContainer.style.maxHeight="20em";
+			
+			expandTagContainer.style.flexDirection="column";
+			post.appendChild(expandTagContainer);
+			expandTagContainer.innerHTML = "loading lmao";
+			
+			/*
+			getTypes(tagList).then((types)=>{
+				expandTagContainer.innerHTML = "";
+				
+				console.log(types)
+				
+				for (type in types){
+					expandTagContainer.appendChild(document.createTextNode(type));
+					var tagsContainer = document.createElement("div");
+					tagsContainer.classList.add("container-horizontal","horizontal-line","child-margins");
+					expandTagContainer.appendChild(tagsContainer);
+					for (label of types[type]){
+						var buttonWrap = document.createElement("div");
+						buttonWrap.classList.add("border");
+						var button = document.createElement("button");
+						button.classList.add("empty","button-style");
+						button.innerHTML = label;
+						button.addEventListener("click",postTag);
+						buttonWrap.appendChild(button);
+						tagsContainer.appendChild(buttonWrap);
+					}
+				}
+			});
+			*/
+			/*
+			for (tag of tagList){
+				var buttonWrap = document.createElement("div");
+				buttonWrap.classList.add("border");
+				var button = document.createElement("button");
+				button.classList.add("empty","button-style");
+				button.innerHTML = tag;
+				button.addEventListener("click",postTag);
+				buttonWrap.appendChild(button);
+				expandTagContainer.appendChild(buttonWrap);
+			}
+			*/
+			
+			var expandButton = document.createElement("div");
+			expandButton.classList.add("border","post-expand");
+			var button = document.createElement("button");
+			button.classList.add("empty","button-style");
+			button.innerHTML="expand post";
+			button.addEventListener("click",postExpand);
+			expandButton.appendChild(button);
+			post.appendChild(expandButton);
+			
+			postContainer.appendChild(document.createElement("br"));
+			postContainer.appendChild(post);
+			postContainer.appendChild(document.createElement("br"));
+			
+			post.id = id;
+			post_tags[id] = tagList;
+			
+		}
+		
+		function postExpand(event){
+			post = event.target.parentNode.parentNode;
+			id = post.id
 
-
-<h1>Vanilla 2 <i class="fas fa-ice-cream"></i></h1>
-
-<div><i class="fas fa-search search-icon"></i><input id="search-bar" autocomplete="off" class="search border" type="text"></input>
-    <ul id ="search-result" class="border results no-overflow minimize" style="border-radius: 0 0 1em 1em;">
-    </ul>
-</div>
-
-<div id="group-expand">
-    <div class="filled no-overflow tag-container top-label minimize">
-        <span>group</span>
-
-        <button class="line-left tag-button"><i class="fas fa-compress"></i></button>
-    </div>
-    <div id="group-tags-container" class="border tags-container minimize no-overflow" style="border-top-left-radius: 0;"></div>
-</div>
-
-<div id="tags-container" class="border tags-container"></div>
-
-<ul class="post-info">
-    <li class="filled no-overflow tag-container">
-        <div class="border"><i class="fas fa-heart "></i> <i class="fas fa-greater-than-equal"></i></div>
-        <input id="min-score" class="border" type="number" value=50></input>
-    </li>
-    <li><button id="rating" class="button-padding tag-button filled"><i class="fas fa-filter"></i> <span> all</span></button></li>
-    <li><button id="sort" class="button-padding tag-button filled"><i class="fas fa-sort-amount-down"></i> <span> default</span></button></li>
-</ul>
-
-<button id="search-button" class="rounded-only search-button">search</button>
-
-<h2 id="post-results"></h2>
-
-<div id="posts-container" class="middle"></div>
+			if (event.target.innerHTML == "expand post"){
+				event.target.innerHTML = "minimise post";
+				post.childNodes[2].style.display = "flex";
+				var type = document.getElementById("type");
+				if (type.options[type.selectedIndex].text == "false"){
+					post.childNodes[2].innerHTML = "";
+					var tagsContainer = document.createElement("div");
+					tagsContainer.classList.add("container-horizontal","child-margins");
+					for (label of post_tags[id]){
+						var buttonWrap = document.createElement("div");
+						buttonWrap.classList.add("border");
+						var button = document.createElement("button");
+						button.classList.add("empty","button-style");
+						button.innerHTML = label;
+						button.addEventListener("click",postTag);
+						buttonWrap.appendChild(button);
+						tagsContainer.appendChild(buttonWrap);
+					}
+					post.childNodes[2].appendChild(tagsContainer);
+				}
+				else{
+					if (post_tags[id]){
+						
+						console.log(post.childNodes[2])
+						const temp_tags = post_tags[id].map((x)=>x);
+						post_tags[id] = null;
+						getTypes(temp_tags).then((types)=>{
+							post.childNodes[2].innerHTML = "";
+							
+							console.log(types)
+							
+							for (type in types){
+								post.childNodes[2].appendChild(document.createTextNode(type));
+								var tagsContainer = document.createElement("div");
+								tagsContainer.classList.add("container-horizontal","horizontal-line","child-margins");
+								post.childNodes[2].appendChild(tagsContainer);
+								for (label of types[type]){
+									var buttonWrap = document.createElement("div");
+									buttonWrap.classList.add("border");
+									var button = document.createElement("button");
+									button.classList.add("empty","button-style");
+									button.innerHTML = label;
+									button.addEventListener("click",postTag);
+									buttonWrap.appendChild(button);
+									tagsContainer.appendChild(buttonWrap);
+								}
+							}
+						}).catch((error)=>{post_tags[id] = temp_tags;event.target.innerHTML = "expand post";post.childNodes[2].style.display = "none";});
+					}else{
+						console.log("closed")
+					}
+				}
+				
+			}
+			else if (event.target.innerHTML == "minimise post"){
+				event.target.innerHTML = "expand post";
+				post.childNodes[2].style.display = "none";
+			}
+		};
+		
+		function postTag(event){
+			sessionStorage.setItem("new-window-tag",event.target.innerHTML.split(" ")[0]);
+			var rating = document.getElementById("rating");
+			sessionStorage.setItem("new-window-rating",rating.options[rating.selectedIndex].text);
+			window.open("https://sigilquiver.github.io/vanilla/");
+			console.log(sessionStorage.getItem("new-window-tag"));
+		}
+		
+		function showPages(){
+			for (pageWrap of document.getElementsByClassName("page-container")){
+				pageWrap.style.display="flex";
+				
+			}
+		}
+		
+		function setPageValue(){
+			page=Math.min(results-1,page);
+			page=Math.max(0,page);
+			for (pageWrap of document.getElementsByClassName("page-container")){pageWrap.childNodes[5].childNodes[1].value = page.toString();}
+			makeRequest();
+		}
+		
+		for (pageWrap of document.getElementsByClassName("page-container")){
+			pageWrap.childNodes[1].childNodes[0].addEventListener("click",(event)=>{page=0;setPageValue();});
+			pageWrap.childNodes[3].childNodes[0].addEventListener("click",(event)=>{page=Math.max(0,page-1);setPageValue();});
+			pageWrap.childNodes[5].childNodes[1].addEventListener("keyup",(event)=>{if(event.key === 'Enter' || event.keyCode === 13 || event.which === 13 ){page=event.target.value;setPageValue();}})
+			pageWrap.childNodes[7].childNodes[0].addEventListener("click",(event)=>{page=Math.min(results-1,page+1);setPageValue();});
+			pageWrap.childNodes[9].childNodes[0].addEventListener("click",(event)=>{page=results-1;setPageValue();});
+		}
+		
+		document.getElementById("new-group-button").addEventListener("click",(event) =>{
+			tagButtonContainer.appendChild(createGroup());
+			updateGroupSelector();
+		});
+		
+		function createQuery(){
+			query = "";
+			
+			for (dict of getTags(false)){
+				query += " "
+				
+				if (dict["type"] == "single"){
+					if (dict["blacklist"] == "-"){
+						query+="-";
+					}
+					query+=dict["value"].split(" ")[0];
+				}
+				
+				if (dict["type"] == "group"){
+					//query = query.substring(0,query.length-1);
+					if (dict["blacklist"] == "~"){
+						query+="( ";
+					}
+					for(value of dict["value"]){
+						if (dict["blacklist"] == "-"){query+="-"}
+						
+						query += value.split(" ")[0];
+						
+						if (dict["blacklist"] == "~"){query+=" ~ ";}
+						else{query+=" ";}
+					}
+					if (dict["blacklist"] == "~"){
+						query = query.substring(0,query.length-3);
+						query+=" )";
+					}
+					else{query = query.substring(0,query.length-1);}
+				
+				}
+			}
+			
+			var rating = document.getElementById("rating");
+			if (rating.options[rating.selectedIndex].text != "none"){
+				query+= " rating:"+rating.options[rating.selectedIndex].text;
+			}
+			
+			var sort = document.getElementById("score-sort");
+			if (sort.options[sort.selectedIndex].text != "none"){
+				query+= " sort:"+sort.options[sort.selectedIndex].text+":desc";
+			}
+			
+			var minScore = document.getElementById("min-score");
+			query+= " score:>="+(Math.max(minScore.value,0) || 0);
+			
+			query = query.substring(1,query.length);
+			
+			
+			console.log(query);
+			return query;
+		}
+		
+		function makeRequest(){
+			
+			document.getElementById("results").scrollIntoViewIfNeeded();
+			url = query_url+"tags="+createQuery()+"&pid="+page.toString()+"&limit=15";
+			console.log(url);
+			if (posts_controller) {
+				posts_controller.abort()
+			}
+			posts_controller = new AbortController();
+			signal = posts_controller.signal;
+			fetch(url,{signal})
+			.then((response) => response.text())
+			.then(str => new window.DOMParser().parseFromString(str, "text/xml")).then((xml) => xmlToJson(xml))
+			.then((data) => {
+			
+				console.log(data);
+				var post_tags = {};
+				postContainer.innerHTML="";
+				
+				document.getElementById("results").innerHTML = data["posts"]["@attributes"]["count"]+" posts";
+				
+				results = parseInt(data["posts"]["@attributes"]["count"]);
+				
+				i = 1
+				for(dict of data["posts"]["post"]){
+					var score = dict["@attributes"]["score"];
+					var tags = dict["@attributes"]["tags"].split(" ");
+					tags.pop();
+					tags.splice(0,1);
+					var img = dict["@attributes"]["sample_url"];
+					var source = dict["@attributes"]["source"];
+					createPost(img,tags,score,source,"post-"+parseInt(i));
+					
+					i+=1
+				}
+			});
+		}
+		
+		const types = {"0":"general","1":"artist","2":"idk","3":"copyright","4":"character","5":"meta"}
+		
+		function autoComplete(input_val){
+			console.log(input_val);
+			
+			if (getType(input_val)){
+				return getType(input_val);
+			}
+			
+			return fetch("https://api.rule34.xxx/index.php?page=dapi&s=tag&q=index&name="+input_val)
+			.then(response => response.text())
+			.then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+			.then((data) => {
+				console.log(data.getElementsByTagName("tag")[0].getAttribute("type"));
+				var type = data.getElementsByTagName("tag")[0].getAttribute("type");
+				type = types[type];
+				var name = data.getElementsByTagName("tag")[0].getAttribute("name");
+				var count = data.getElementsByTagName("tag")[0].getAttribute("count");
+				name = name+" ("+count+")";
+				storeTypes(name,type);
+				return {"type":type,"name":name};
+			});
+		}
+		
+		function storeTypes(tag,type){
+			sessionStorage.setItem("tag-type-"+tag,type);
+		}
+		
+		function getType(tag){
+			return sessionStorage.getItem("tag-type-"+tag);
+		}
+		
+		async function getTypes(tags){
+			
+			
+			var promises = [];
+			for(tagLabel of tags){
+				tag = tagLabel.split(" ")[0];
+				console.log(tagLabel,"loop");
+				promises.push(autoComplete(tag));
+			}
+			
+			var finished = await Promise.all(promises);
+			
+			
+			tagTypes = {}
+			
+			for (result of finished){
+				if (!tagTypes[result["type"]]){
+					tagTypes[result["type"]] = [];
+				}
+				tagTypes[result["type"]].push(result["name"]);
+			}
+			
+			
+			/*
+			var tagstring="";
+			for (tag of tags){
+				tagstring += (tagstring.length==0 ? "":",")+tag;
+			}
+			temp_tags = [];
+			console.log("https://autocomplete-types.legoing-lego.workers.dev/?tags="+tagstring);
+			var request = await fetch("https://autocomplete-types.legoing-lego.workers.dev/?tags="+tagstring).then((data)=>data.json());
+			*/
+			
+			/*
+			var result = {};
+			var temp_tags = [];
+			for (tag of tags){
+				temp_tags.push(tag)
+				if (temp_tags.length == 1){
+					var tagstring="";
+					for (tag of temp_tags){
+						tagstring += (tagstring.length==0 ? "":",")+tag;
+					}
+					temp_tags = [];
+					var request = await fetch("https://autocomplete-types.legoing-lego.workers.dev/?tags="+tagstring).then((data)=>data.json());
+					console.log(request);
+					for (key in request){
+						if (key in result){
+							for (tag of request[key]){
+								result[key].push(tag);
+							}
+						}
+						else{
+							result[key] = request[key];
+						}
+					}
+				}
+			}
+			*/
+			
+			return tagTypes;
+		}
+		
+		document.getElementById("tag-search-button").addEventListener("click",(event)=>{
+			page=0;
+			pageWrap.childNodes[5].childNodes[1].value = "";
+			makeRequest();
+			showPages();
+			
+		})
+		
+		console.log(sessionStorage.getItem("new-window-tag"));
+		
+		if (sessionStorage.getItem("new-window-tag")){
+			tagButtonContainer.appendChild(createTag(sessionStorage.getItem("new-window-tag")));
+			var rating = document.getElementById("rating");
+			rating.selectedIndex = rating.options.namedItem(sessionStorage.getItem("new-window-rating"))
+			
+			sessionStorage.removeItem("new-window-tag");
+			sessionStorage.removeItem("new-window-rating");
+			
+			makeRequest();
+			showPages();
+		}
+		
+		//createGroupManual("cross-gender",["trap","futanari","solo_futa","futa_only"],"-");
+		createGroupManual("gay (male)",["solo_male","male_only","2boys","yaoi","gay"],"-");
+		createGroupManual("extreme",["penile_penetration","prolapse","scat"],"-");
+		createGroupManual("fetish",["bondage","pregnant","fart","fart_fetish","inflation","vore","giantess","expansion"],"-");
+		//createGroupManual("furry",["mammal","reptile","furry","anthro","my_little_pony","horse","dog","dinosaur","animal-genitalia","feral","zoophilia"],"-");
+		//createGroupManual("monster",["monster","tentacle"],"-");
+		
+	</script>
+	
 </body>
-
 </html>
