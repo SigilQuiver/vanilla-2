@@ -2,7 +2,7 @@
 $(document).ready(function(){
 
     //group minimize button
-    var minimizeBtn = $($("#group-expand").children()[0]).children()[1];
+    var minimizeBtn = $("#group-minimize").children()[1];
     $(minimizeBtn).click(function(){
         TagsContainer.minimizeGroup();
     })
@@ -33,6 +33,11 @@ $(document).ready(function(){
         var sortTypes = [" default"," score"," updated"];
         var index = (sortTypes.indexOf($(thisDom).text())+1)%sortTypes.length;
         $(thisDom).text(sortTypes[index]);
+    })
+
+    $("#group-add").click(function(){
+        TagsContainer
+        .addGroup()
     })
 });
 
@@ -106,7 +111,7 @@ let TagsContainer =  {
     },
 
     //create a new group with an initial name
-    addGroup(label="group"){
+    addGroup(label=null){
 
         //get group id number
         var num = Object.keys(this.GroupList).length;
@@ -114,6 +119,8 @@ let TagsContainer =  {
             num += 1;
         }
         var groupID = num.toString();
+
+        label = label ? label : "group"+groupID;
 
         this.GroupList[groupID] = new Group(label);
 
@@ -345,6 +352,7 @@ let Search = {
 
     minimiseResults(){
         $("#search-result").addClass("minimize");
+        $("#search-bar").val("")
     },
 
     expandResults(data){
