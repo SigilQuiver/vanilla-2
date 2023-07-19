@@ -30,7 +30,7 @@
 </div>
 
 <div id="group-expand">
-    <div class="filled no-overflow tag-container top-label minimize">
+    <div id="group-minimize" class="filled no-overflow tag-container top-label minimize">
         <span>group</span>
 
         <button class="line-left tag-button"><i class="fas fa-compress"></i></button>
@@ -38,8 +38,10 @@
     <div id="group-tags-container" class="border tags-container minimize no-overflow" style="border-top-left-radius: 0;"></div>
 </div>
 
-<div id="tags-container" class="border tags-container"></div>
-
+<div>
+    <button id="group-add"class="tag-button filled rounded-only button-padding" style="border-radius: 1em 1em 0 0;">new group</button>
+    <div id="tags-container" class="border tags-container" style="border-radius: 0 1em 1em 1em;"></div>
+</div>
 <ul class="post-info">
     <li class="filled no-overflow tag-container">
         <div class="border"><i class="fas fa-heart "></i> <i class="fas fa-greater-than-equal"></i></div>
