@@ -1,3 +1,14 @@
+$.fn.isInViewport = function() {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return (elementBottom > viewportTop) && (elementTop < viewportBottom);
+};
+
+
 function indexOfMax(arr) {
     if (arr.length === 0) {
         return -1;
@@ -19,10 +30,24 @@ function indexOfMax(arr) {
 $(document).ready(function(){
     $(window).on("scroll",function(){
 
-        var graceperiod = window.innerHeight*0.5;
+        var graceperiod = window.innerHeight;
         var documentEnd = $(window).scrollTop() > document.body.offsetHeight-(window.innerHeight+graceperiod);
         if(PostManager.scrollReady && documentEnd){
             PostManager.appendPosts();
+        }
+
+        var videoList = document.getElementsByTagName("video");
+        for (video of videoList){
+            
+            if (!$(video).isInViewport()){
+                
+                $(video).trigger("pause");
+            }
+            else{
+                if (!video.paused){
+                    console.log($(video).isInViewport())
+                }
+            }
         }
     })
 
