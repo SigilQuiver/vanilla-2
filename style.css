@@ -84,7 +84,7 @@ h1,h2,h3{
 
 .img-container-v *{
     width: 40em;
-    min-width: 80vw
+    min-width: 80vw;
     max-height: 130vh;
     
     
@@ -109,7 +109,8 @@ h1,h2,h3{
 .img-container-h{
     max-width: 80vw;
 
-    overflow-y: auto;
+    overflow-y: auto:
+    overflow-x: auto;
 
 }
 
