@@ -83,7 +83,8 @@ h1,h2,h3{
 }
 
 .img-container-v *{
-    max-width: 40em;
+    width: 40em;
+    min-width: 80vw
     max-height: 130vh;
     
     
@@ -98,7 +99,7 @@ h1,h2,h3{
 }
 
 .img-container-h *{
-    max-width: 80vw;
+    width: 80vw;
     max-height: 130vh;
     
     
