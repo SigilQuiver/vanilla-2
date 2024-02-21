@@ -133,6 +133,7 @@ let TagsContainer =  {
         </span>`));
         
         //apply listener events to parts of group element
+        //put each child of the group dom into a variable
         var [labelInput,typeBtn,expandBtn,closeBtn] = groupDom.children();
         
         //input listener

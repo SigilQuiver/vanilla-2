@@ -118,11 +118,11 @@ PostManager = {
         var media;
         if (post.file_url.slice(-4) == ".mp4"){
             media = `
-            <video controls loop loading="lazy">
+            <video controls loop preload="none" poster="${post.sample_url}">
                 <source src="${post.file_url}" type="video/mp4">
             </video>`
         }else{
-            media = `<img src="${post.sample_url}" loading="lazy"></img>`
+            media = `<img src="${post.sample_url}"></img>`
         }
 
         postInfo = "";
@@ -141,11 +141,12 @@ PostManager = {
                 </ul>
             </div>
             <div class="img-container-v">${media}</div>
+            <button class="footer-button tag-button"><i class="fas fa-caret-down"></i><i class="fas fa-caret-up" style="display:none"></i></button>
             <div class="minimize no-overflow"><div class="tags-container border"></div></div>
-            <button class="footer-button tag-button"><i class="fas fa-caret-down"></i></button>
+            
         </div>`);
-
-        var [a,b,postTags,expandButton] = $(postDom).children();
+        //put each child of the post dom
+        var [a,imgContainer,expandButton,postTags] = $(postDom).children();
         postTags = $(postTags).children()[0];
 
         var tagDom;
@@ -156,6 +157,27 @@ PostManager = {
             copyright:"far fa-copyright",
             metadata:"fas fa-wrench",
         }
+
+        
+        $($(imgContainer).children()[0]).on("load",function(){
+            console.log(this.width,this.height)
+            if (this.width>this.height){
+                let container = $(this).parent();
+                $(container).addClass("img-container-h");
+                $(container).removeClass("img-container-v");
+            }
+        });
+
+        $($(imgContainer).children()[0]).on("loadedmetadata",function(){
+            console.log(this.videoWidth,this.videoHeight,this)
+            if (this.videoWidth>this.videoHeight){
+                let container = $(this).parent();
+                $(container).addClass("img-container-h");
+                $(container).removeClass("img-container-v");
+            }
+        });
+        
+
         for (type of Object.keys(post.tagTypes)){
             icon = "";
             if (icons[type]){
@@ -177,12 +199,24 @@ PostManager = {
 
             }
         }
+
         $(expandButton).click(function(){
-            var postTags = $($(this).parent()).children()[2];
+            var postTags = $($(this).parent()).children();
+            let i = 0;
+            while (!$(postTags[i]).hasClass("no-overflow")){
+                i++;
+            }
+            postTags = postTags[i]
+            var icons = $(this).children();
             if ($(postTags).hasClass("minimize")){
                 $(postTags).removeClass("minimize");
+                icons[0].style.display = "none";
+                icons[1].style.display = "var(--fa-display,inline-block)";
+
             }else{
                 $(postTags).addClass("minimize");
+                icons[0].style.display = "var(--fa-display,inline-block)";
+                icons[1].style.display = "none";
             }
         });
 

@@ -22,6 +22,23 @@ body {
     gap:1.5em;
 }
 
+.checkbox-container{
+    display: flex;
+    flex-direction: row;
+    padding: 0.2em 0.5em;
+    gap:0.7em
+}
+
+.checkbox{
+    width:1.2em;
+    height:1.2em;
+    background-color: var(--dark);
+}
+
+.checkbox:hover{
+    background-color: var(--mid);
+}
+
 h1,h2,h3{
     margin:0;
 }
@@ -65,45 +82,54 @@ h1,h2,h3{
     gap: 3em;
 }
 
-.img-container-h{
+.img-container-v *{
+    max-width: 40em;
+    max-height: 130vh;
     
-    max-width: 80vw;
-    overflow-x: auto;
-    overflow-y: hidden;
-    
-}
-.img-container-h *{
     
     object-fit: cover;
 }
 
 .img-container-v{
+    max-width: 40em;
+
     overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 130vw;
+
 }
-.img-container-v *{
-    width:40em;
+
+.img-container-h *{
     max-width: 80vw;
-    min-height: 5em;
+    max-height: 130vh;
+    
+    
     object-fit: cover;
 }
 
+.img-container-h{
+    max-width: 80vw;
+
+    overflow-y: auto;
+
+}
 
 .no-overflow{ 
     overflow:hidden;
 
 }
 
-
+.constrain-width{
+    width:40em;
+}
 
 .post-container{
+    
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    width:min-content;
     max-width: 80vw;
-    width:40em;
     background-color: var(--light);
+
 }
 
 .button-padding{
@@ -112,6 +138,7 @@ h1,h2,h3{
 
 .post-container button, .post-container ul{
     padding: 0.2em 0.5em;
+    
 }
 
 .post-info{
@@ -124,7 +151,6 @@ h1,h2,h3{
     flex-wrap:wrap;
 
     max-width: 80vw;
-    width:40em;
 }
 
 .footer-button{
@@ -222,7 +248,7 @@ input:hover{
     align-content: flex-start;
     flex-wrap: wrap;
 
-    width:40em;
+
     max-width:80vw;
 
     min-height:4em;
