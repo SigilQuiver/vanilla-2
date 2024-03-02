@@ -158,7 +158,7 @@ PostManager = {
             metadata:"fas fa-wrench",
         }
 
-        
+        /*
         $($(imgContainer).children()[0]).on("load",function(){
             console.log(this.width,this.height)
             if (this.width>this.height){
@@ -176,7 +176,7 @@ PostManager = {
                 $(container).removeClass("img-container-v");
             }
         });
-        
+        */
 
         for (type of Object.keys(post.tagTypes)){
             icon = "";
