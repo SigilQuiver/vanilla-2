@@ -82,36 +82,28 @@ h1,h2,h3{
     gap: 3em;
 }
 
-.img-container-v *{
-    width: 40em;
-    min-width: 80vw;
-    max-height: 130vh;
-    
-    
+.img-container-h{
+
+    max-width: 80vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+}
+.img-container-h *{
+
     object-fit: cover;
 }
 
 .img-container-v{
-    max-width: 40em;
-
     overflow-y: auto;
-
+    overflow-x: hidden;
+    max-height: 130vw;
 }
-
-.img-container-h *{
-    width: 80vw;
-    max-height: 130vh;
-    
-    
-    object-fit: cover;
-}
-
-.img-container-h{
+.img-container-v *{
+    width:40em;
     max-width: 80vw;
-
-    overflow-y: auto:
-    overflow-x: auto;
-
+    min-height: 5em;
+    object-fit: cover;
 }
 
 .no-overflow{ 
