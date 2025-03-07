@@ -76,11 +76,18 @@ class Post{
             character:[],
             copyright:[],
             metadata:[],
-            tag:[]
+            tag:[],
         };
 
         for (var t of this.tag_info){
-            tagTypes[t.type].push({name:t.tag,count:t.count});
+            //edge case check for unknown tag type
+            if (!(tagTypes[t.type])){
+                tagTypes.tag.push({name:t.tag,count:t.count});
+            }
+            else{
+                tagTypes[t.type].push({name:t.tag,count:t.count});
+            }
+            
         }
 
         return tagTypes;
