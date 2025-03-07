@@ -21,6 +21,7 @@ $(document).ready(function(){
         
     })
 
+    //sfw-nsfw ratings
     $("#rating").click(function(){
         var thisDom = $(this).children()[1];
         var ratings = [" all"," safe"," explicit"," questionable"];
@@ -28,6 +29,7 @@ $(document).ready(function(){
         $(thisDom).text(ratings[index]);
     })
 
+    //posts order
     $("#sort").click(function(){
         var thisDom = $(this).children()[1];
         var sortTypes = [" default"," score"," updated"];
@@ -35,6 +37,7 @@ $(document).ready(function(){
         $(thisDom).text(sortTypes[index]);
     })
 
+    //add group button
     $("#group-add").click(function(){
         TagsContainer
         .addGroup()
@@ -335,6 +338,7 @@ class Result{
     }
 }
 
+//Class that houses the autocomplete query being executed
 let Search = {
 
     url:"https://api.rule34.xxx/autocomplete.php?q=",

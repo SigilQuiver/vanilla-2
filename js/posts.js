@@ -1,3 +1,4 @@
+// checks if element is visible to the viewport
 $.fn.isInViewport = function() {
     var elementTop = $(this).offset().top;
     var elementBottom = elementTop + $(this).outerHeight();
@@ -122,7 +123,7 @@ PostManager = {
                 <source src="${post.file_url}" type="video/mp4">
             </video>`
         }else{
-            media = `<img src="${post.sample_url}"></img>`
+            media = `<img src="${post.file_url}"></img>`
         }
 
         postInfo = "";
@@ -145,6 +146,7 @@ PostManager = {
             <div class="minimize no-overflow"><div class="tags-container border"></div></div>
             
         </div>`);
+
         //put each child of the post dom
         var [a,imgContainer,expandButton,postTags] = $(postDom).children();
         postTags = $(postTags).children()[0];
@@ -264,6 +266,9 @@ PostManager = {
                 console.log(data);
                 for (i in data){
                     p = data[i];
+                    p.sample_url = p.sample_url.replace('api-cdn.','');
+                    p.file_url = p.file_url.replace('api-cdn.','');
+                    p.file_url = p.file_url.replace('api-cdn-mp4.','');
                     postList.push(new Post(p.file_url,p.sample_url,p.tag_info,p.tags,p.source,p.score,parseInt(i)+(pid*limit)))}
                 console.log(postList);
                 if (callback){callback(postList);}
