@@ -39,8 +39,20 @@ body {
     background-color: var(--mid);
 }
 
-h1,h2,h3{
+h1,h2,h3,p{
     margin:0;
+}
+
+p{
+    color: var(--vibrant);
+}
+
+i,a{
+    color: var(--light);
+}
+
+a:hover{
+    color: var(--vibrant);
 }
 
 .border {
@@ -194,7 +206,7 @@ input:hover{
 
 
 .search::placeholder{
-    color: var(--vibrant);
+    color: var(--light);
 }
 
 .search-button{
@@ -284,7 +296,6 @@ button{
 
 }
 
-
 .tag-container{
     display: flex;
     align-items: stretch;
@@ -313,7 +324,45 @@ button{
     padding-bottom: 0;
 }
 
+.no-click{
+    user-select: none;
+}
 
+.center-stretch{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.splash-icon{
+    position: absolute;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.alert {
+    background-color:var(--light)
+}
+
+.tint {
+    background-color: #0a0f1a25;
+}
 
 
 

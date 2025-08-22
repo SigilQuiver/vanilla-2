@@ -1,4 +1,4 @@
-// checks if element is visible to the viewport
+
 $.fn.isInViewport = function() {
     var elementTop = $(this).offset().top;
     var elementBottom = elementTop + $(this).outerHeight();
@@ -28,7 +28,47 @@ function indexOfMax(arr) {
     return maxIndex;
 }
 
+
+function apiCredCheck(failCallback){
+    //check cookies for api credentials
+    var creds = Cookies.get("r34-api-credentials");
+    console.log(creds);
+    if (creds){
+        var url = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&json=1&limit=0${creds}`;
+        
+        //make post request
+        $.ajax({
+            url:url,
+            success:function(data){
+                //check if error message got recieved
+                if (data == "Missing authentication. Go to api.rule34.xxx for more information"){
+                    failCallback();
+                }
+            },
+            error:function(){
+                failCallback();
+            }
+        })
+    }else{
+        failCallback();
+    }
+    
+}
+
+//redirect to api key screen
+function apiFail(){
+    var url = window.location.href.replace("vanilla-2/index.html","vanilla-2/api-key.html");
+    $(location).attr('href',url);
+
+    Cookies.set("last-url",window.location.href)
+}
+
 $(document).ready(function(){
+    console.log("floop you man")
+    //check api credentials are good
+    apiCredCheck(apiFail);
+
+    //pause videos when offscreen
     $(window).on("scroll",function(){
 
         var graceperiod = window.innerHeight;
@@ -37,6 +77,7 @@ $(document).ready(function(){
             PostManager.appendPosts();
         }
 
+        // Pause videos not in the viewport
         var videoList = document.getElementsByTagName("video");
         for (video of videoList){
             
@@ -118,28 +159,64 @@ PostManager = {
     scrollReady:false,
     postResults:0,
     pageID:0,
-    limit:5,
+    limit:4,
     postTotal:0,
 
     newPost(post){
 
+        //creates elements for the post content, with their sample displayed first by default
         var media;
+        var splash;
+        var isVideo = false;
         if (post.file_url.slice(-4) == ".mp4"){
             media = `
-            <video controls loop preload="none" poster="${post.sample_url}">
-                <source src="${post.file_url}" type="video/mp4">
+            <video hidden controls loop preload="none" poster="${post.sample_url}">
+                <source loading="lazy" src="${post.file_url}" type="video/mp4">
             </video>`
+
+            splash = `
+            <div class="splash-container video">
+                <div class="splash-icon noclick tint">
+                    <i class="fas fa-play noclick"></i>
+                    <div>video</div>
+                </div>
+
+                <img loading="lazy" src="${post.sample_url}"></img>
+            </div>`
+
+            isVideo = true;
+
+        }else if (post.file_url.slice(-4) == ".gif"){
+            media = `<img hidden loading="lazy" src="${post.file_url}"></img>`
+            splash = `
+            <div class="splash-container gif">
+                <div class="splash-icon noclick tint">
+                    <i class="fas fa-play noclick absolute"></i>
+                    <div>gif</div>
+                </div>
+
+                <img loading="lazy" src="${post.preview_url}"></img>
+            </div>`
         }else{
-            media = `<img src="${post.file_url}"></img>`
+            media = `<img hidden loading="lazy" src="${post.file_url}"></img>`
+
+            splash = `
+            <div class="splash-container">
+                <img loading="lazy" src="${post.sample_url}"></img>
+            </div>
+            `
         }
+
 
         postInfo = "";
 
+        //gets text (usually main artist) for the top right of posts
         var artists = post.getArtistsString();
         if (artists){
             postInfo += `<li><i class="fas fa-paintbrush"></i> ${artists}</li>`
         }
         
+        //shell for posts
         var postDom = $.parseHTML(`
         <div class="rounded-only no-overflow post-container" style="order:${post.id}" id="p${post.id}">
             <div>
@@ -148,7 +225,7 @@ PostManager = {
                     ${postInfo}
                 </ul>
             </div>
-            <div class="img-container-v">${media}</div>
+            <div class="img-container-v">${splash}${media}</div>
             <button class="footer-button tag-button"><i class="fas fa-caret-down"></i><i class="fas fa-caret-up" style="display:none"></i></button>
             <div class="minimize no-overflow"><div class="tags-container border"></div></div>
             
@@ -163,34 +240,39 @@ PostManager = {
         var icons = {
             artist:"fas fa-paintbrush",
             character:"fas fa-user",
-            copyright:"far fa-copyright",
+            copyright:"fas fa-copyright",
             metadata:"fas fa-wrench",
         }
 
-        /*
-        $($(imgContainer).children()[0]).on("load",function(){
-            console.log(this.width,this.height)
-            if (this.width>this.height){
-                let container = $(this).parent();
-                $(container).addClass("img-container-h");
-                $(container).removeClass("img-container-v");
+        //swap between splash and media, unless it's a video which is one way
+        var [splash,media] = $(imgContainer).children();
+
+        $(splash).click(function(){
+            var media = $($(this).parent()).children()[1];
+
+            $(media).show()
+            $(this).hide()
+
+            if ($(this).hasClass("video")){
+                $(media).get(0).play();
             }
         });
 
-        $($(imgContainer).children()[0]).on("loadedmetadata",function(){
-            console.log(this.videoWidth,this.videoHeight,this)
-            if (this.videoWidth>this.videoHeight){
-                let container = $(this).parent();
-                $(container).addClass("img-container-h");
-                $(container).removeClass("img-container-v");
-            }
-        });
-        */
+        //if it's not a video, allow second click to switch back to sample again
+        if (!($(splash).hasClass("video"))){
+            $(media).click(function(){
+                var splash = $($(this).parent()).children()[0];
 
+                $(this).hide()
+                $(splash).show()
+            });
+        }
+
+        //create button for each tag, with an icon, and put it into the tags container
         for (type of Object.keys(post.tagTypes)){
             icon = "";
             if (icons[type]){
-                icon = `<i class="${icons[type]}"></i> `;
+                icon = `<i class="${icons[type]} no-click"></i> `;
             }
 
             for (var t of post.tagTypes[type]){
@@ -208,7 +290,8 @@ PostManager = {
 
             }
         }
-
+        
+        //expand button functionality
         $(expandButton).click(function(){
             var postTags = $($(this).parent()).children();
             let i = 0;
@@ -259,9 +342,10 @@ PostManager = {
     apiRequest(pid,limit,callback=null){
         this.scrollReady = false;
 
+        var creds = Cookies.get("r34-api-credentials");
         var query = TagsContainer.compileTags();
         console.log(query);
-        var url = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=${limit}&fields=tag_info&tags=${query}&pid=${pid}&json=1`;
+        var url = `https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=${limit}&fields=tag_info&tags=${query}&pid=${pid}&json=1${creds}`;
         console.log(url)
         
         $.ajax({
@@ -273,9 +357,9 @@ PostManager = {
                 console.log(data);
                 for (i in data){
                     p = data[i];
-                    p.sample_url = p.sample_url.replace('api-cdn.','');
-                    p.file_url = p.file_url.replace('api-cdn.','');
-                    p.file_url = p.file_url.replace('api-cdn-mp4.','');
+                    //p.sample_url = p.sample_url.replace('api-cdn.','');
+                    //p.file_url = p.file_url.replace('api-cdn.','');
+                    //p.file_url = p.file_url.replace('api-cdn-mp4.','');
                     postList.push(new Post(p.file_url,p.sample_url,p.tag_info,p.tags,p.source,p.score,parseInt(i)+(pid*limit)))}
                 console.log(postList);
                 if (callback){callback(postList);}
@@ -287,9 +371,10 @@ PostManager = {
     },
 
     apiPostNum(){
+        var creds = Cookies.get("r34-api-credentials");
         var query = TagsContainer.compileTags();
         $.ajax({
-            url:`https://api.rule34.xxx/index.php?page=dapi&s=post&q=index&limit=0&tags=${query}`,
+            url:`https://api.rule34.xxx/index.php?page=dapi&s=post&limit=0&q=index&limit=0&tags=${query}${creds}`,
             success:function(data){
                 PostManager.postResults = $($(data).children()[0]).attr("count");
                 $("#post-results").text(PostManager.postResults+" results");
