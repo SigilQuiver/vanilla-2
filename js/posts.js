@@ -58,9 +58,10 @@ function apiCredCheck(failCallback){
 //redirect to api key screen
 function apiFail(){
     var url = window.location.href.replace("vanilla-2/index.html","vanilla-2/api-key.html");
-    $(location).attr('href',url);
+    console.log(url);
+    //$(location).attr('href',url);
 
-    Cookies.set("last-url",window.location.href)
+    //Cookies.set("last-url",window.location.href)
 }
 
 $(document).ready(function(){
