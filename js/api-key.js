@@ -27,7 +27,7 @@ $(document).ready(function(){
                     //check if error message got recieved
                     if (data != "Missing authentication. Go to api.rule34.xxx for more information"){
                         //add credentials to cookies, and redirect back to normal site
-                        Cookies.set("r34-api-credentials",creds)
+                        Cookies.set("r34-api-credentials",creds,{ expires: 30 })
 
                         var url = Cookies.get("last-url");
                         if (!(url)){
