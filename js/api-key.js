@@ -31,7 +31,7 @@ $(document).ready(function(){
 
                         var url = Cookies.get("last-url");
                         if (!(url)){
-                            url = window.location.href.replace("vanilla-2/api-key.html","vanilla-2/index.html");
+                            url = new URL(".",window.location.href).href;
                         }
                         $(location).attr('href',url);
                     }
